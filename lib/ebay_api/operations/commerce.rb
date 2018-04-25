@@ -7,6 +7,7 @@ class EbayAPI
   scope :commerce do
     path "commerce"
 
+    require_relative "commerce/catalog"
     require_relative "commerce/notification"
     require_relative "commerce/taxonomy"
   end
