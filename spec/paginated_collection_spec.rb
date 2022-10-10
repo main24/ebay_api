@@ -4,21 +4,22 @@ require "spec_helper"
 require "ebay_api/paginated_collection"
 
 RSpec.describe EbayAPI::PaginatedCollection do
-  let!(:operation) do
+  let!(:new_operation) do
     class EbayAPI
-      operation :test_paginated_operation do
-        http_method :get
-        path "sell/marketing/v1/ad_campaign"
+      scope :paginated do
+        operation :test_paginated_operation do
+          http_method :get
+          path { "sell/marketing/v1/ad_campaign" }
 
-        option :limit,  optional: true
-        option :offset, optional: true
+          option :limit,  optional: true
+          option :offset, optional: true
 
-        query { { limit: limit, offset: offset }.compact }
+          query { { limit: limit, offset: offset }.compact }
+          middleware { PaginatedCollection::MiddlewareBuilder.call(max_limit: 2) }
 
-        middleware { PaginatedCollection::MiddlewareBuilder.call(max_limit: 2) }
-
-        response(200) do |*response|
-          EbayAPI::PaginatedCollection.new(self, response, "campaigns")
+          response(200) do |*response|
+            EbayAPI::PaginatedCollection.new(self, response, "campaigns")
+          end
         end
       end
     end
@@ -58,7 +59,7 @@ RSpec.describe EbayAPI::PaginatedCollection do
 
   let(:params) { {} }
 
-  subject { client.test_paginated_operation(**params) }
+  subject { client.paginated.test_paginated_operation(**params) }
 
   it "retrieves all pages" do
     expect(subject.to_a).to eq(Array.new(5) { |i| { "id" => i } })

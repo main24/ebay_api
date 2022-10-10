@@ -7,12 +7,12 @@ RSpec.describe EbayAPI, ".sell.marketing.campaign.create" do
   let(:settings_file) { "settings.valid.yml" }
   let(:params) do
     {
-      "campaignName" => "eBay Mag GB",
+      campaignName: "eBay Mag GB",
       fundingStrategy: {
-          "bidPercentage" => "5.0",
-          "fundingModel"  => "COST_PER_SALE"
+        bidPercentage: "5.0",
+        fundingModel: "COST_PER_SALE"
       },
-      "marketplaceId": "EBAY_GB",
+      marketplaceId: "EBAY_GB",
       startDate: Time.now.iso8601
     }
   end
