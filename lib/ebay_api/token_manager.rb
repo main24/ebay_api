@@ -37,13 +37,18 @@ class EbayAPI::TokenManager
   #     Callback. Will be called after successful renewal with two arguments:
   #     new access token and its expiration time
 
-  # Returns application access token
+  # Returns new application access token
   # https://apitut.com/ebay/api/oauth-application-token.html
   def application_token
+    request_application_token!["access_token"]
+  end
+
+  # Requests new application access token and returns raw data
+  def request_application_token!
     request_token!(
       grant_type: "client_credentials",
       scope: "https://api.ebay.com/oauth/api_scope"
-    )["access_token"]
+    )
   end
 
   # Returns access token (retrieves and returns new one if it has expired)

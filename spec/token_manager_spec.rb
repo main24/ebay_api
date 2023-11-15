@@ -57,6 +57,25 @@ describe EbayAPI::TokenManager do
     end
   end
 
+  describe "#request_application_token!" do
+    let!(:api) do
+      stub_request(:post, "https://api.sandbox.ebay.com/identity/v1/oauth2/token")
+        .with(
+          body: {
+            grant_type: "client_credentials",
+            scope: "https://api.ebay.com/oauth/api_scope"
+          },
+          basic_auth: %w[1 2]
+        )
+        .to_return(refresh_response)
+    end
+
+    it "returns application token" do
+      expect(subject.request_application_token!).to eq(JSON.parse(refresh_response[:body]))
+      expect(api).to have_been_requested
+    end
+  end
+
   describe "#access_token" do
     context "with valid access_token" do
       it "returns access_token" do
