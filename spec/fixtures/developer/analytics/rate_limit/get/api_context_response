@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"rateLimits":[{"apiContext":"sell","apiName":"Negotiation","apiVersion":"v1","resources":[{"name":"sell.negotiation"}]},{"apiContext":"sell","apiName":"listingapi","apiVersion":"v1_beta","resources":[{"name":"createListingDraft"}]},{"apiContext":"sell","apiName":"logistics","apiVersion":"v1","resources":[{"name":"sell.logistics"}]},{"apiContext":"sell","apiName":"recommendation","apiVersion":"v1","resources":[{"name":"DELETE"}, {"name":"POST"}, {"name":"GET"}, {"name":"PUT"}]},{"apiContext":"sell","apiName":"research","apiVersion":"v1","resources":[{"name":"sell.research.product_insight"}]}]}
