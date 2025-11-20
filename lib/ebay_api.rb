@@ -27,6 +27,8 @@ class EbayAPI < Evil::Client
   require_relative "ebay_api/middlewares"
   require_relative "ebay_api/exceptions"
 
+  I18n.load_path += Dir[File.join(GEM_ROOT, *%w[config locales ** *.{yml,yaml}])]
+
   class << self
     attr_accessor :logger
   end
