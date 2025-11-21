@@ -44,6 +44,15 @@ class EbayAPI
 
     # Enumberable collection of the eBay marketplaces
     class << self
+      # Override new to handle hash argument from Evil::Client::Dictionary
+      def new(attributes = {})
+        if attributes.is_a?(Hash) && !attributes.empty?
+          super(**attributes)
+        else
+          super
+        end
+      end
+
       sites_file = File.join(GEM_ROOT, %w[config sites.yml])
       include Evil::Client::Dictionary[sites_file]
 

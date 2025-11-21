@@ -73,4 +73,47 @@ RSpec.describe EbayAPI::Site do
       expect(subject).to eq "Canadian"
     end
   end
+
+  describe ".new" do
+    context "when initialized with a hash argument" do
+      let(:hash_attrs) do
+        {
+          id: 0,
+          code: "EBAY-US",
+          country: "US",
+          host: "www.ebay.com",
+          key: "EBAY_US",
+          currencies: ["USD"],
+          languages: ["en-US"]
+        }
+      end
+
+      it "properly initializes attributes from hash" do
+        site = described_class.new(hash_attrs)
+        expect(site.id).to eq(0)
+        expect(site.code).to eq("EBAY-US")
+        expect(site.country).to eq("US")
+        expect(site.host).to eq("www.ebay.com")
+        expect(site.key).to eq("EBAY_US")
+        expect(site.currencies.first.code).to eq("USD")
+        expect(site.languages.first).to eq("en-US")
+      end
+    end
+
+    context "when initialized with keyword arguments" do
+      it "properly initializes attributes from keywords" do
+        site = described_class.new(
+          id: 0,
+          code: "EBAY-US",
+          country: "US",
+          host: "www.ebay.com",
+          key: "EBAY_US"
+        )
+        expect(site.id).to eq(0)
+        expect(site.code).to eq("EBAY-US")
+        expect(site.country).to eq("US")
+        expect(site.host).to eq("www.ebay.com")
+      end
+    end
+  end
 end
