@@ -165,7 +165,7 @@
   :key: EBAY_PL
   :languages: [pl-PL]
 - :id: 215
-  :code: EBAY-US
+  :code: EBAY-RU
   :country: RU
   :currencies: [RUB]
   :host: ebay.com/sch/Russia
