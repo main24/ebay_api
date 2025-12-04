@@ -25,7 +25,7 @@ RSpec.describe EbayAPI::PaginatedCollection do
     end
   end
 
-  let(:client)   { EbayAPI.new(settings) }
+  let(:client)   { EbayAPI.new(**settings) }
   let(:settings) { yaml_fixture_file(settings_file) }
   let(:settings_file) { "settings.valid.yml" }
 

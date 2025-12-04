@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe EbayAPI, '.developer.analytics.rate_limit.get' do
-  let(:client) { described_class.new(settings) }
+  let(:client) { described_class.new(**settings) }
   let(:settings) { yaml_fixture_file('settings.valid.yml') }
 
   before { stub_request(:get, url).to_return(response) }

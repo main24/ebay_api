@@ -1,5 +1,5 @@
-RSpec.describe EbayAPI, ".commerce.notifications.public_key.get" do
-  let(:client) { described_class.new(settings) }
+RSpec.describe EbayAPI, ".commerce.notification.public_key.get" do
+  let(:client) { described_class.new(**settings) }
   let(:scope) { client.commerce.notifications.public_key }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:url) do

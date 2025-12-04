@@ -1,6 +1,6 @@
 RSpec.describe EbayAPI, ".sell.account.payments_program.get" do
   let(:url)           { "https://api.ebay.com/sell/account/v1/payments_program/EBAY_US/EBAY_PAYMENTS" }
-  let(:client)        { described_class.new(settings) }
+  let(:client)        { described_class.new(**settings) }
   let(:scope)         { client.sell.account(version: version).payments_program }
   let(:settings)      { yaml_fixture_file(settings_file) }
   let(:version)       { "1.2.0" }

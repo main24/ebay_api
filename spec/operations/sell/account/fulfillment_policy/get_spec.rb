@@ -1,5 +1,5 @@
 RSpec.describe EbayAPI, ".sell.account.fulfillment_policy.get" do
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.account(version: version).fulfillment_policy }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:version)  { "1.2.0" }

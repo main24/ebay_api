@@ -4,7 +4,7 @@ RSpec.describe EbayAPI, ".commerce.catalog.product_summary.search" do
       https://api.ebay.com/commerce/catalog/v1_beta/product_summary/search{?params*}
     URL
   end
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.commerce.catalog.product_summary }
   let(:settings) { yaml_fixture_file(settings_file) }
   let(:version)  { "1_beta.1.0" }
