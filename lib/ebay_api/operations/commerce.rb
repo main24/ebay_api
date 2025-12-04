@@ -10,5 +10,6 @@ class EbayAPI
     require_relative "commerce/catalog"
     require_relative "commerce/notification"
     require_relative "commerce/taxonomy"
+    require_relative "commerce/metadata"
   end
 end
