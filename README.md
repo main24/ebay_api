@@ -1,4 +1,5 @@
 # [WIP] EbayAPI
+[![Build Status](https://github.com/main24/ebay_api/actions/workflows/test.yml/badge.svg?branch=support-catalog-product-search)](https://github.com/main24/ebay_api/actions/workflows/test.yml)
 
 Ruby client to eBay RESTful JSON API
 
