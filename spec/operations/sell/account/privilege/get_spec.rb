@@ -1,6 +1,6 @@
 RSpec.describe EbayAPI, ".sell.account.privilege.get" do
   let(:url)           { "https://api.ebay.com/sell/account/v1/privilege/" }
-  let(:client)        { described_class.new(settings) }
+  let(:client)        { described_class.new(**settings) }
   let(:scope)         { client.sell.account(version: version).privilege }
   let(:settings)      { yaml_fixture_file(settings_file) }
   let(:version)       { "1.2.0" }

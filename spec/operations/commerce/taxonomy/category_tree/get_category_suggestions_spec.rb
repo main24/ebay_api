@@ -1,5 +1,5 @@
 RSpec.describe EbayAPI, ".commerce.taxonomy.category_tree.get_category_suggestions" do
-  let(:client) { described_class.new(settings) }
+  let(:client) { described_class.new(**settings) }
   let(:scope) { client.commerce.taxonomy.category_tree(category_tree_id: 41) }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:url) do

@@ -1,6 +1,6 @@
 RSpec.describe EbayAPI, ".sell.account.program.opt_in" do
   let(:url)      { "https://api.ebay.com/sell/account/v1/program/opt_in" }
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.account(version: version).program }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:version)  { "1.2.0" }

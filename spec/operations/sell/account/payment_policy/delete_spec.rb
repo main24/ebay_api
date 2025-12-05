@@ -1,6 +1,6 @@
 RSpec.describe EbayAPI, ".sell.account.payment_policy.delete" do
   let(:url) { "https://api.ebay.com/sell/account/v1/payment_policy/184528067024" }
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.account(version: version).payment_policy }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:version)  { "1.2.0" }

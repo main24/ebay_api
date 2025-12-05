@@ -4,7 +4,7 @@ RSpec.describe EbayAPI, ".sell.marketing.ads.list" do
       https://api.ebay.com/sell/marketing/v1/ad_campaign/1/ad{?params*}
     URL
   end
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.marketing(version: version).ads(campaign_id: 1) }
   let(:settings) { yaml_fixture_file(settings_file) }
   let(:version)  { "1.1.0" }

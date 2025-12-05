@@ -10,7 +10,7 @@ RSpec.describe EbayAPI, "error handling" do
     end
   end
 
-  let(:client)        { EbayAPI.new(yaml_fixture_file(settings_file)) }
+  let(:client)        { EbayAPI.new(**yaml_fixture_file(settings_file)) }
   let(:settings_file) { "settings.valid.yml" }
 
   let!(:request) do

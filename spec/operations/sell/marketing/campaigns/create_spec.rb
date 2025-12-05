@@ -1,6 +1,6 @@
 RSpec.describe EbayAPI, ".sell.marketing.campaign.create" do
   let(:url) { "https://api.ebay.com/sell/marketing/v1/ad_campaign" }
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.marketing(version: version).campaigns }
   let(:settings) { yaml_fixture_file(settings_file) }
   let(:version)       { "1.1.0" }
