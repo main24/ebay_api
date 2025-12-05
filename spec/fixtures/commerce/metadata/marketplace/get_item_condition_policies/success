@@ -1,0 +1,24 @@
+HTTP/1.1 200 OK
+Content-Length: 500
+Content-Type: application/json
+
+{
+  "itemConditionPolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "itemConditionRequired": true,
+      "itemConditions": [
+        {
+          "conditionDescription": "Brand new, unused, and unworn",
+          "conditionId": "1000"
+        },
+        {
+          "conditionDescription": "Pre-owned but in excellent condition",
+          "conditionId": "3000"
+        }
+      ]
+    }
+  ]
+}
+
