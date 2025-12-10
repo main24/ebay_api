@@ -3,9 +3,9 @@
 # @see https://developer.ebay.com/api-docs/sell/metadata/overview.html
 #
 class EbayAPI
-  scope :commerce do
+  scope :sell do
     scope :metadata do
-      path { "catalog/v#{EbayAPI::COMMERCE_METADATA_VERSION.split(/\s|\./).first}" }
+      path { "metadata/v#{EbayAPI::SELL_METADATA_VERSION.split(/\s|\./).first}" }
 
       require_relative "metadata/marketplace"
     end

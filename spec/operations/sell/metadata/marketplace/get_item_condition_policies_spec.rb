@@ -1,10 +1,9 @@
-
-RSpec.describe EbayAPI, ".commerce.metadata.marketplace.get_item_condition_policies" do
+RSpec.describe EbayAPI, ".sell.metadata.marketplace.get_item_condition_policies" do
   let(:client) { described_class.new(**settings) }
-  let(:scope) { client.commerce.metadata.marketplace(marketplace_id: "EBAY_US") }
+  let(:scope) { client.sell.metadata.marketplace(marketplace_id: "EBAY_US") }
   let(:settings) { yaml_fixture_file("settings.valid.yml") }
   let(:url) do
-    "https://api.ebay.com/commerce/catalog/v1/marketplace/EBAY_US/get_item_condition_policies"
+    "https://api.ebay.com/sell/metadata/v1/marketplace/EBAY_US/get_item_condition_policies"
   end
 
   before  { stub_request(:get, url).to_return(response) }
@@ -12,7 +11,7 @@ RSpec.describe EbayAPI, ".commerce.metadata.marketplace.get_item_condition_polic
 
   context "success" do
     let(:response) do
-      open_fixture_file "commerce/metadata/marketplace/get_item_condition_policies/success"
+      open_fixture_file "sell/metadata/marketplace/get_item_condition_policies/success"
     end
 
     it "sends a request" do

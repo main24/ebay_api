@@ -1,5 +1,5 @@
 class EbayAPI
-  scope :commerce do
+  scope :sell do
     scope :metadata do
       scope :marketplace do
         path { "marketplace/#{marketplace_id}" }
