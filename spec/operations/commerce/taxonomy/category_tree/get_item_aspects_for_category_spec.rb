@@ -21,4 +21,14 @@ RSpec.describe EbayAPI, ".commerce.taxonomy.category_tree.get_item_aspects_for_c
       expect(a_request(:get, url)).to have_been_made
     end
   end
+
+  context "when no aspects are available" do
+    let(:response) do
+      open_fixture_file "commerce/taxonomy/category_tree/get_item_aspects_for_category/no_content"
+    end
+
+    it "returns empty aspects array" do
+      expect(subject).to eq({ "aspects" => [] })
+    end
+  end
 end
