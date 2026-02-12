@@ -7,6 +7,7 @@ class EbayAPI
 
         require_relative "marketplace/get_item_condition_policies"
         require_relative "marketplace/get_category_policies"
+        require_relative "marketplace/get_classified_ad_policies"
       end
     end
   end

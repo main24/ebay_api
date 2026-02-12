@@ -1,0 +1,23 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "classifiedAdPolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "adFormatEnabled": "Enabled",
+      "sellerContactDetailsEnabled": true,
+      "classifiedAdPaymentMethodEnabled": "Enabled",
+      "classifiedAdShippingMethodEnabled": false,
+      "classifiedAdBestOfferEnabled": "Enabled",
+      "classifiedAdCounterOfferEnabled": true,
+      "classifiedAdContactByPhoneEnabled": true,
+      "classifiedAdContactByEmailEnabled": true,
+      "classifiedAdAutoAcceptEnabled": true,
+      "classifiedAdAutoDeclineEnabled": true
+    }
+  ]
+}
+
+
