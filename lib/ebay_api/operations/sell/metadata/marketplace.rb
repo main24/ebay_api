@@ -13,6 +13,7 @@ class EbayAPI
         require_relative "marketplace/get_listing_type_policies"
         require_relative "marketplace/get_motors_listing_policies"
         require_relative "marketplace/get_negotiated_price_policies"
+        require_relative "marketplace/get_return_policies"
       end
     end
   end
