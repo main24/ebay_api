@@ -1,0 +1,25 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "listingTypePolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "listingDurations": [
+        {
+          "listingType": "AUCTION",
+          "durationValues": ["DAYS_3", "DAYS_5", "DAYS_7", "DAYS_10"]
+        },
+        {
+          "listingType": "FIXED_PRICE_ITEM",
+          "durationValues": ["GTC"]
+        }
+      ],
+      "pickupDropOffEnabled": false,
+      "digitalGoodDeliveryEnabled": false
+    }
+  ]
+}
+
+
