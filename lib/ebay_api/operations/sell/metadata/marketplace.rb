@@ -6,6 +6,7 @@ class EbayAPI
         option :marketplace_id
 
         require_relative "marketplace/get_item_condition_policies"
+        require_relative "marketplace/get_category_policies"
       end
     end
   end
