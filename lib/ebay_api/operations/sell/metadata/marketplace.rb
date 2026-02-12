@@ -11,6 +11,7 @@ class EbayAPI
         require_relative "marketplace/get_automotive_parts_compatibility_policies"
         require_relative "marketplace/get_listing_structure_policies"
         require_relative "marketplace/get_listing_type_policies"
+        require_relative "marketplace/get_motors_listing_policies"
       end
     end
   end
