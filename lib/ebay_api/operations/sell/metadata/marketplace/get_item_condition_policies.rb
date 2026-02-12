@@ -7,6 +7,10 @@ class EbayAPI
         operation :get_item_condition_policies do
           path { "get_item_condition_policies" }
           http_method :get
+
+          # When no policies are available, eBay returns 204 No Content.
+          # To provide a consistent API, we return an empty array instead.
+          response(204) { { "itemConditionPolicies" => [] } }
         end
       end
     end
