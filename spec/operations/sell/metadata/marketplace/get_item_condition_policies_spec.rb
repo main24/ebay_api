@@ -41,5 +41,13 @@ RSpec.describe EbayAPI, ".sell.metadata.marketplace.get_item_condition_policies"
       end
     end
   end
+
+  context "when no policies are available (204 No Content)" do
+    let(:response) { open_fixture_file "no_content" }
+
+    it "returns an empty array for itemConditionPolicies" do
+      expect(subject["itemConditionPolicies"]).to eq([])
+    end
+  end
 end
 

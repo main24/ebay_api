@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "categoryPolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "autoPayEnabled": true,
+      "orra": true,
+      "minimumReservePrice": 0.0,
+      "paymentMethods": ["CASH_ON_PICKUP"],
+      "intangibleEnabled": false,
+      "isbnSupport": "DISABLED",
+      "upcSupport": "ENABLED",
+      "eanSupport": "DISABLED",
+      "valueCategory": false
+    }
+  ]
+}
+
+

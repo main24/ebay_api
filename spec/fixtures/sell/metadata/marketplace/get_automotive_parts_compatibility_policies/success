@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "automotivePartsCompatibilityPolicies": [
+    {
+      "categoryId": "6028",
+      "categoryTreeId": "100",
+      "maxNumberOfCompatibleVehicles": 1000,
+      "compatibleVehicleTypes": ["US_CARS_TRUCKS", "US_MOTORCYCLES"],
+      "compatibilityBasedOn": "ASSEMBLY"
+    }
+  ]
+}
+
+
