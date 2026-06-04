@@ -1,0 +1,6 @@
+---
+rateTables:
+  - rateTableId: "5048772018"
+    countryCode: "GB"
+    name: "Domestic_Default"
+    locality: "DOMESTIC"
