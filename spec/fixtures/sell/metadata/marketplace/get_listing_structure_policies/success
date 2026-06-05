@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "listingStructurePolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "variationsSupported": true
+    }
+  ]
+}
+
+

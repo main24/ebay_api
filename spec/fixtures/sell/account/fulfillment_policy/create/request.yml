@@ -1,0 +1,16 @@
+---
+name: Domestic free shipping
+marketplaceId: EBAY_US
+categoryTypes:
+  - name: ALL_EXCLUDING_MOTORS_VEHICLES
+handlingTime:
+  unit: DAY
+  value: 1
+shippingOptions:
+  - costType: FLAT_RATE
+    optionType: DOMESTIC
+    shippingServices:
+      - buyerResponsibleForShipping: false
+        freeShipping: true
+        shippingCarrierCode: USPS
+        shippingServiceCode: USPSPriorityFlatRateBox

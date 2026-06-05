@@ -27,6 +27,12 @@ class EbayAPI < Evil::Client
   require_relative "ebay_api/middlewares"
   require_relative "ebay_api/exceptions"
 
+  I18n.load_path += Dir[File.join(GEM_ROOT, *%w[config locales ** *.{yml,yaml}])]
+
+  class << self
+    attr_accessor :logger
+  end
+
   option :token
   option :site,       Site,            optional: true
   option :language,   Language,        optional: true
@@ -41,10 +47,10 @@ class EbayAPI < Evil::Client
     errors.add :wrong_language, language: language, site: site
   end
 
-  format   "json"
-  path     { "https://api#{".sandbox" if sandbox}.ebay.com/" }
+  format "json"
+  path   { "https://api#{".sandbox" if sandbox}.ebay.com/" }
 
-  middleware JSONResponse
+  middleware { [LogRequest, JSONResponse] }
 
   security do
     token_value = token.respond_to?(:call) ? token.call : token
@@ -61,21 +67,28 @@ class EbayAPI < Evil::Client
     }.compact
   end
 
-  response(200) { |_, _, (data, *)| data }
+  response(200, 201) { |_, _, (data, *)| data }
+
+  response(204) { true }
 
   # https://developer.ebay.com/api-docs/static/handling-error-messages.html
   response(400, 401, 409) do |_, _, (data, *)|
-    case (code = data.dig("errors", 0, "errorId"))
+    data = data.to_h
+    error = data.dig("errors", 0) || {}
+    code = error["errorId"]
+    message = error["longMessage"] || error["message"]
+
+    case code
     when 1001
-      message = data.dig("errors", 0, "longMessage")
       raise InvalidAccessToken.new(code: code), message
     else
-      raise Error.new(code: code), data.dig("errors", 0, "message")
+      raise Error.new(code: code, data: data), message
     end
   end
 
   # https://go.developer.ebay.com/api-call-limits
   response(429) do |_, _, (data, *)|
+    data = data.to_h
     error = data.dig("errors", 0) || {}
     code = error["errorId"]
     message = error["longMessage"] || error["message"]
@@ -83,6 +96,7 @@ class EbayAPI < Evil::Client
   end
 
   response(500) do |_, _, (data, *)|
+    data = data.to_h
     code = data.dig("errors", 0, "errorId")
     message =
         data.dig("errors", 0, "longMessage") || data.dig("errors", 0, "message")

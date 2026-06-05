@@ -8,5 +8,6 @@ class EbayAPI
     require_relative "sell/account"
     require_relative "sell/inventory"
     require_relative "sell/marketing"
+    require_relative "sell/metadata"
   end
 end

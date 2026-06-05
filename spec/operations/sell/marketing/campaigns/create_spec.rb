@@ -1,18 +1,18 @@
 RSpec.describe EbayAPI, ".sell.marketing.campaign.create" do
   let(:url) { "https://api.ebay.com/sell/marketing/v1/ad_campaign" }
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.marketing(version: version).campaigns }
   let(:settings) { yaml_fixture_file(settings_file) }
   let(:version)       { "1.1.0" }
   let(:settings_file) { "settings.valid.yml" }
   let(:params) do
     {
-      "campaignName" => "eBay Mag GB",
+      campaignName: "eBay Mag GB",
       fundingStrategy: {
-          "bidPercentage" => "5.0",
-          "fundingModel"  => "COST_PER_SALE"
+        bidPercentage: "5.0",
+        fundingModel: "COST_PER_SALE"
       },
-      "marketplaceId": "EBAY_GB",
+      marketplaceId: "EBAY_GB",
       startDate: Time.now.iso8601
     }
   end

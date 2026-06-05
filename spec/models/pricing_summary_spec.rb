@@ -3,12 +3,12 @@ RSpec.describe EbayAPI::PricingSummary do
 
   let(:source) do
     {
-      "currency"                       => "USD",
-      "price"                          => 49.99,
-      "pricingVisibility"              => "PRE_CHECKOUT",
-      "minimumAdvertisedPrice"         => 50.0,
-      "originallySoldForRetailPriceOn" => "ON_EBAY",
-      "originalRetailPrice"            => 50.01
+      currency:                       "USD",
+      price:                          49.99,
+      pricingVisibility:              "PRE_CHECKOUT",
+      minimumAdvertisedPrice:         50.0,
+      originallySoldForRetailPriceOn: "ON_EBAY",
+      originalRetailPrice:            50.01
     }
   end
 
@@ -30,9 +30,9 @@ RSpec.describe EbayAPI::PricingSummary do
 
   context "with hash prices" do
     before do
-      source.update "price" => { "value" => "49.99", currency: "USD" },
-                    "originalRetailPrice" => { value: 50.01, currency: "USD" },
-                    "minimumAdvertisedPrice" => { value: "50", currency: "USD" }
+      source.update price: { value: "49.99", currency: "USD" },
+                    originalRetailPrice: { value: 50.01, currency: "USD" },
+                    minimumAdvertisedPrice: { value: "50", currency: "USD" }
     end
 
     it { is_expected.to eq target }
@@ -40,8 +40,8 @@ RSpec.describe EbayAPI::PricingSummary do
 
   context "without price" do
     before do
-      source.delete "price"
       target.delete :price
+      source.delete :price
     end
 
     it { is_expected.to eq target }
@@ -49,8 +49,8 @@ RSpec.describe EbayAPI::PricingSummary do
 
   context "without map params" do
     before do
-      source.delete "minimumAdvertisedPrice"
-      source.delete "pricingVisibility"
+      source.delete :minimumAdvertisedPrice
+      source.delete :pricingVisibility
       target.delete :minimumAdvertisedPrice
       target.delete :pricingVisibility
     end
@@ -59,7 +59,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with map price only" do
-    before { source.delete "pricingVisibility" }
+    before { source.delete :pricingVisibility }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /MAP/
@@ -67,7 +67,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with map visibility only" do
-    before { source.delete "minimumAdvertisedPrice" }
+    before { source.delete :minimumAdvertisedPrice }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /MAP/
@@ -75,7 +75,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with wrong visibility" do
-    before { source["pricingVisibility"] = "FOO" }
+    before { source[:pricingVisibility] = "FOO" }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /FOO/
@@ -84,8 +84,8 @@ RSpec.describe EbayAPI::PricingSummary do
 
   context "without stp params" do
     before do
-      source.delete "originalRetailPrice"
-      source.delete "originallySoldForRetailPriceOn"
+      source.delete :originalRetailPrice
+      source.delete :originallySoldForRetailPriceOn
       target.delete :originallySoldForRetailPriceOn
       target.delete :originalRetailPrice
     end
@@ -94,7 +94,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with stp price only" do
-    before { source.delete "originallySoldForRetailPriceOn" }
+    before { source.delete :originallySoldForRetailPriceOn }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /STP/
@@ -102,7 +102,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with stp type only" do
-    before { source.delete "originalRetailPrice" }
+    before { source.delete :originalRetailPrice }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /STP/
@@ -110,7 +110,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with wrong stp_type" do
-    before { source["originallySoldForRetailPriceOn"] = "FOO" }
+    before { source[:originallySoldForRetailPriceOn] = "FOO" }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /FOO/
@@ -118,7 +118,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "without currency" do
-    before { source.delete "currency" }
+    before { source.delete :currency }
 
     it "raises StandardError" do
       expect { subject }
@@ -127,7 +127,7 @@ RSpec.describe EbayAPI::PricingSummary do
   end
 
   context "with wrong currency" do
-    before { source["currency"] = "FOO" }
+    before { source[:currency] = "FOO" }
 
     it "raises StandardError" do
       expect { subject }.to raise_error StandardError, /FOO/

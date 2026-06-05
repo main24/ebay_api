@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"rateLimits":[{"apiContext":"sell","apiName":"Negotiation","apiVersion":"v1","resources":[{"name":"sell.negotiation"}]}]}

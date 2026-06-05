@@ -11,10 +11,10 @@ class EbayAPI::TokenManager
   class RefreshTokenExpired < EbayAPI::Error; end
   class RefreshTokenInvalid < EbayAPI::Error; end
 
-  option :access_token
-  option :access_token_expires_at
-  option :refresh_token
-  option :refresh_token_expires_at
+  option :access_token,             optional: true
+  option :access_token_expires_at,  optional: true
+  option :refresh_token,            optional: true
+  option :refresh_token_expires_at, optional: true
   option :appid
   option :certid
   option :on_refresh,               optional: true
@@ -36,6 +36,20 @@ class EbayAPI::TokenManager
   #   @option options [#call]  on_refresh
   #     Callback. Will be called after successful renewal with two arguments:
   #     new access token and its expiration time
+
+  # Returns new application access token
+  # https://apitut.com/ebay/api/oauth-application-token.html
+  def application_token
+    request_application_token!["access_token"]
+  end
+
+  # Requests new application access token and returns raw data
+  def request_application_token!
+    request_token!(
+      grant_type: "client_credentials",
+      scope: "https://api.ebay.com/oauth/api_scope"
+    )
+  end
 
   # Returns access token (retrieves and returns new one if it has expired)
   def access_token
@@ -59,25 +73,29 @@ class EbayAPI::TokenManager
   private
 
   def refresh_token_request!
-    response =
-      request! token_endpoint,
-               grant_type: "refresh_token", refresh_token: refresh_token
+    request_token!(grant_type: "refresh_token", refresh_token: refresh_token)
+  end
+
+  def request_token!(options)
+    response = request!(token_endpoint, **options)
     body = JSON.parse(response.body)
     return body if response.is_a? Net::HTTPSuccess
     handle_errors!(body)
   rescue JSON::ParserError
-    raise EbayAPI::Error, "Can't refresh access token: #{response.body}"
+    message = "Response isn't JSON: #{response.code} - #{response.body}"
+    raise EbayAPI::Error, "Can't refresh access token: #{message}"
   end
 
   def handle_errors!(response)
-    message = response["error_description"]
+    cause = response.values_at("error", "error_description").compact.join(" - ")
+    cause = response if cause.length.zero?
     case response["error"]
     when "server_error"
-      raise EbayAPI::InternalServerError, message
-    when "invalid_grant"
-      raise RefreshTokenInvalid, message
+      raise EbayAPI::InternalServerError, cause
+    when "invalid_grant", "unauthorized_client"
+      raise RefreshTokenInvalid, cause
     else
-      raise EbayAPI::Error, "Can't refresh access token: #{message}"
+      raise EbayAPI::Error, "Can't refresh access token: #{cause}"
     end
   end
 

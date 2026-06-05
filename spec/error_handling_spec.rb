@@ -1,14 +1,16 @@
 RSpec.describe EbayAPI, "error handling" do
   let!(:operation) do
     class EbayAPI
-      operation :test_error_handling do
-        http_method :get
-        path "sell/marketing/v1/ad_campaign"
+      scope :error_handling do
+        operation :test_error_handling do
+          http_method :get
+          path "sell/marketing/v1/ad_campaign"
+        end
       end
     end
   end
 
-  let(:client)        { EbayAPI.new(yaml_fixture_file(settings_file)) }
+  let(:client)        { EbayAPI.new(**yaml_fixture_file(settings_file)) }
   let(:settings_file) { "settings.valid.yml" }
 
   let!(:request) do
@@ -16,7 +18,7 @@ RSpec.describe EbayAPI, "error handling" do
     stub_request(:get, uri).to_return(response)
   end
 
-  subject { client.test_error_handling }
+  subject { client.error_handling.test_error_handling }
 
   context "on eBay's internal server error" do
     let(:response) do

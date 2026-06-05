@@ -4,6 +4,10 @@
 class EbayAPI
   class PaginatedCollection
     class Request < Evil::Client::Resolver::Request
+      def self.call(schema, settings, **options)
+        new(schema, settings, **options)
+      end
+
       def initialize(schema, settings, uri:, limit: nil)
         super(schema, settings)
         @uri = URI(uri)
@@ -38,12 +42,12 @@ class EbayAPI
       @initial_next       = @next
     end
 
-    def each
-      return to_enum unless block_given?
+    def each(&block)
+      return to_enum unless block
       @collection = @initial_collection
       @next       = @initial_next
       loop do
-        @collection.each { |element| yield(element) }
+        @collection.each { |element| block.call(element) }
         raise StopIteration if all_records_loaded?
         load_next!
       end
@@ -62,7 +66,7 @@ class EbayAPI
       middleware = Evil::Client::Resolver::Middleware.call(@schema, @settings)
       connection = @schema.client.connection
       stack      = middleware.inject(connection) { |app, layer| layer.new app }
-      handle_response(*stack.call(request))
+      handle_response(*stack.call(request.environment))
     end
 
     def handle_response(status, _headers, (data, *))

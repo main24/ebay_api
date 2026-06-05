@@ -1,0 +1,4 @@
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{"errors":[{"errorId":75001,"domain":"API_CATALOG","category":"REQUEST","message":" The call must have a valid 'q', or 'category_ids' or 'gtin' or 'mpn' query parameter. "}]}

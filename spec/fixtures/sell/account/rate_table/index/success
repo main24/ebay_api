@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Content-Length: 135
+Content-Type: application/json
+
+{"rateTables":[{"rateTableId":"5048772018","countryCode":"GB","name":"Domestic_Default","locality":"DOMESTIC"}]}
+

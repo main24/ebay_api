@@ -1,0 +1,34 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "returnPolicies": [
+    {
+      "categoryId": "625",
+      "categoryTreeId": "0",
+      "domestic": {
+        "returnsAcceptanceEnabled": true,
+        "policyDescriptionEnabled": false,
+        "returnShippingCostPayers": ["SELLER", "BUYER"],
+        "refundMethods": ["MONEY_BACK"],
+        "returnMethods": ["REPLACEMENT"],
+        "returnPeriods": [
+          {"value": 14, "unit": "CALENDAR_DAY"},
+          {"value": 30, "unit": "CALENDAR_DAY"}
+        ]
+      },
+      "international": {
+        "returnsAcceptanceEnabled": true,
+        "policyDescriptionEnabled": false,
+        "returnShippingCostPayers": ["BUYER"],
+        "refundMethods": ["MONEY_BACK"],
+        "returnMethods": ["REPLACEMENT"],
+        "returnPeriods": [
+          {"value": 30, "unit": "CALENDAR_DAY"}
+        ]
+      }
+    }
+  ]
+}
+
+

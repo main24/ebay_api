@@ -1,0 +1,23 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "motorsListingPolicies": [
+    {
+      "categoryId": "6028",
+      "categoryTreeId": "100",
+      "vinSupported": true,
+      "vrmSupported": false,
+      "kTypeSupported": true,
+      "epidSupported": true,
+      "depositSupported": true,
+      "minItemCompatibility": 1,
+      "maxItemCompatibility": 1000,
+      "ebayMotorsProAdFormatEnabled": "Disabled",
+      "localMarketAdFormatEnabled": "Disabled",
+      "sellerProvidedTitleSupported": true
+    }
+  ]
+}
+
+

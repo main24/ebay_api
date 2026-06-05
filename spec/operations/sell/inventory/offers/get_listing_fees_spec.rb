@@ -1,5 +1,5 @@
 RSpec.describe EbayAPI, ".sell.inventory.offer.get_listing_fees" do
-  let(:client)   { described_class.new(settings) }
+  let(:client)   { described_class.new(**settings) }
   let(:scope)    { client.sell.inventory(version: version).offers }
   let(:response) { yaml_fixture_file(response_file).to_json }
   let(:request)  { yaml_fixture_file(request_file).to_json }
